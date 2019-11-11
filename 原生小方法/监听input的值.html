@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>监听input的值</title>
+    <script src="../js/jQ.js"></script>
+</head>
+
+<body id="body">
+    <input type="text" id="username" name="username" autofocus="autofocus" /><br />
+        
+    <input type="text" value="">
+</body>
+<script>
+    body.onclick = function(){
+        console.log(2)
+    }
+    //用于监听input的值变化（input的值产生变化才会触发事件）
+    (function ($) {
+        $.fn.watch = function (callback) {
+            return this.each(function () {
+                //缓存以前的值  
+                $.data(this, 'originVal', $(this).val());
+                //event  
+                $(this).on('keyup paste', function () {
+                    var originVal = $.data(this, 'originVal');
+                    var currentVal = $(this).val();
+
+                    if (originVal !== currentVal) {
+                        $.data(this, 'originVal', $(this).val());
+                        callback(currentVal);
+                    }
+                });
+            });
+        }
+    })(jQuery);
+    $("input:text").watch(function (value) {
+        if (value.length >= 5) {
+            console.log(1)
+            console.log(value)
+            $("input").val("")
+        }
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // 强制刷新页面
+    // setInterval(function () {
+    //     location.href = location.href
+    // }, 1000);
+
+</script>
+
+</html>

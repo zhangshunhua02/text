@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>监听input的值</title>
+    <script src="./js/jQ.js"></script>
+</head>
+
+<body>
+    <input type="text" value="" autofocus="autofocus">
+</body>
+<script>
+    //用于监听input的值变化（input的值产生变化才会触发事件）
+    (function ($) {
+        $.fn.watch = function (callback) {
+            return this.each(function () {
+                //缓存以前的值  
+                $.data(this, 'originVal', $(this).val());
+                //event  
+                $(this).on('keyup paste', function () {
+                    var originVal = $.data(this, 'originVal');
+                    var currentVal = $(this).val();
+
+                    if (originVal !== currentVal) {
+                        $.data(this, 'originVal', $(this).val());
+                        callback(currentVal);
+                    }
+                });
+            });
+        }
+    })(jQuery);
+    // 获取input的value值通过Ajax传送到后台
+    $("input:text").watch(function (value) {
+        if (value.length >= 14) {
+            // console.log(1)
+            // 当前时间
+            //定义一个date对象d
+            var d = new Date();
+            //从d中获取年
+            var nowYear = d.getFullYear();
+            //从d中获取月份
+            var month = (d.getMonth() + 1).toString();
+            //从d中获取日期
+            var day = d.getDate().toString();
+            //从d中获取小时
+            var hours = d.getHours().toString();
+            //从d中获取分钟
+            var minutes = d.getMinutes().toString();
+            //从d中获取秒
+            var seconds = d.getSeconds().toString();
+            //进行拼接当前时间
+            var daten = nowYear + "-" + month + "-" + day + hours + ":" + minutes + ":" + seconds
+            // console.log(value)
+            // var vals = eval("[{values:value,}]");
+            //    console.log(vals)
+            // 当前的input的value值
+            var vals = value
+            $.ajax({
+                type: "POST", //为get请求
+                url: "https://bbtadmin.babbitt.vip/wxcode", //请求的后台接口
+                dataType: "json", //返回数据为json 格式
+                data: { code: vals, dates: daten },
+                success: function (res) {
+                    console.log(res)
+                }
+            })
+            $("input").val("")
+        }
+
+    });
+
+</script>
+
+</html>

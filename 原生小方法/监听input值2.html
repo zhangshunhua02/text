@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>监听input值</title>
+    <script src="./js/jQ.js"></script>
+</head>
+
+<body>
+    <input type="text" value="" id="input1">
+    <input type="text" oninput="OnInput (event)" onpropertychange="OnPropChanged (event)" value="Text field" />
+</body>
+<script>
+    // jquery方法
+    $("#input1").bind("input propertychange", function (event) {
+        console.log($("#input1").val())
+    });
+    // 原生方法
+    // Firefox, Google Chrome, Opera, Safari, Internet Explorer from version 9
+    function OnInput(event) {
+        alert("The new content: " + event.target.value);
+    }
+    // Internet Explorer
+    function OnPropChanged(event) {
+        if (event.propertyName.toLowerCase() == "value") {
+            alert("The new content: " + event.srcElement.value);
+        }
+    }
+
+
+
+</script>
+
+</html>
