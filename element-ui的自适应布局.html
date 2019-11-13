@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<!-- import CSS -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+	<style lang="less">
+		.el-row {
+			margin-bottom: 20px;
+		}
+
+		.el-row:last-child {
+			margin-bottom: 0;
+		}
+
+		.el-col {
+			border-radius: 4px;
+		}
+
+		.bg-purple-dark {
+			background: #99a9bf;
+		}
+
+		.bg-purple {
+			height: 300px;
+			text-align: center;
+			background: #d3dce6;
+		}
+
+		.bg-purple-light {
+			background: #e5e9f2;
+		}
+
+		.grid-content {
+			border-radius: 4px;
+			min-height: 36px;
+		}
+
+		.row-bg {
+			padding: 10px 0;
+			background-color: #f9fafc;
+		}
+
+		/* 布局容器满屏 */
+		#app,
+		html,
+		body,
+		.el-container {
+			padding: 0;
+			margin: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.el-header{
+			line-height: 60px;
+			padding: 0;
+			background-color: #B3C0D1;
+			color: #333;
+			text-align: center;
+		}
+		.el-footer {
+			line-height: 60px;
+			padding: 0;
+			background-color: #B3C0D1;
+			color: #333;
+			text-align: center;
+		}
+		.el-aside {
+			background-color: #D3DCE6;
+			color: #333;
+			text-align: center;
+		}
+		.el-main {
+			background-color: #E9EEF3;
+			color: #333;
+			text-align: center;
+			padding: 0;
+		}
+
+		/* 布局容器满屏 */
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<!-- 布局容器满屏 -->
+		<el-container direction="vertical">
+			<el-header>头部</el-header>
+			<el-container>
+				<el-aside width="200px">选项区</el-aside>
+				<el-container>
+					<el-main>内容区</el-main>
+					<el-footer>尾部</el-footer>
+				</el-container>
+			</el-container>
+		</el-container>
+		<!-- 布局容器满屏 -->
+	</div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+	new Vue({
+		el: '#app',
+		data: function () {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		},
+	})
+</script>
+
+</html>
